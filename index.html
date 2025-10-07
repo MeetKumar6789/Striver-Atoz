@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="me.png" type="image/png">
+  <title>NivasGruh</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, #004e92, #000428);
+      padding: 5px 10px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 3px solid #00c853;
+    }
+
+    .top-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .top-section img {
+      height: 45px;
+  width: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffffff;
+      background-color: white;
+    }
+
+    .top-section h1 {
+      margin: 0;
+      font-size: 22px;
+      font-family: Georgia, serif;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      margin-top: 5px;
+  padding: 6px 12px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      background-color: rgba(255, 255, 255, 0.1);
+      
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #00c853;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+      padding: 120px 20px 60px;
+    }
+
+    .content-box {
+      max-width: 600px;
+      margin: auto;
+      background: #f0f4f8;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      border: 2px solid #d0e3e8;
+      text-align: center;
+    }
+
+    .content-box h4 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #0d1b2a;
+    }
+
+    .content-box h5 {
+      margin: 20px 0 10px;
+      font-size: 18px;
+      color: #004e92;
+    }
+
+    .content-box ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      text-align: left;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .content-box li {
+      margin-bottom: 8px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-gallery {
+      margin: 40px auto 0;
+      max-width: 1000px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .image-gallery h3 {
+      text-align: center;
+      font-size: 22px;
+      color: #004e92;
+      margin-bottom: 20px;
+    }
+
+    .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  justify-items: center;
+}
+
+.gallery-grid img {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 2px solid #ddd;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+
+.gallery-grid img:nth-child(4),
+.gallery-grid img:nth-child(5) {
+  grid-column: span 1;
+}
+
+
+.gallery-grid::after {
+  content: '';
+  grid-column: 2 / span 1;
+}
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 14px;
+      z-index: 999;
+    }
+
+    footer .contact-info {
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: #00e676;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+
+    @media screen and (max-width: 600px) {
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .top-section h1 {
+        font-size: 28px;
+        text-align: center;
+      }
+
+      .top-section img {
+        height: 60px;
+        width: 60px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px 0;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        font-size: 18px;
+        color: #00e676;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .content-box {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        height: auto;
+      }
+
+      main {
+        padding: 100px 15px 80px;
+      }
+
+      footer {
+        font-size: 13px;
+        padding: 10px;
+      }
+    }
+ #slider {
+  max-width: 800px;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  margin: 30px auto; 
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  background-color: #fff;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+#slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+#slider button:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+#prev { left: 0; }
+#next { right: 0; }
+@media screen and (max-width: 768px) {
+  #slider {
+    height: 250px;
+  }
+}
+@media screen and (max-width: 480px) {
+  #slider {
+    height: 200px;
+  }
+  #slider button {
+    font-size: 24px;
+    padding: 8px 12px;
+  }
+}
+
+/*popup */
+.help-button {
+  position: fixed;
+  bottom: 100px; 
+  right: 20px;
+  padding: 10px 20px;
+  background-color: white;
+  color: #333;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s;
+}
+
+
+.help-button:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #004e92;
+}
+
+.modal-content ol {
+  padding-left: 20px;
+  margin: 15px 0;
+  color: #333;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+  </style>
+</head>
+<body>
+<script src="script.js"></script>
+  <header>
+    <div class="top-section">
+      <img src="/ng/me.png" alt="LOGO">
+      <h1>NivasGruh</h1>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="/ng/index.html">🏠 Home</a>
+      <a href="/ng/signup.html">👤Sign up</a>
+      <a href="/ng/faqs.html">💬 FAQs</a>
+      <a href="/ng/Contact.html">📬 Contact</a>
+    
+      
+    </nav>
+  </header>
+<br><br><br>
+  <main>
+    <div class="content-box">
+      <h4>Welcome to NiwasGrugh, a Safe and Secure Place to Stay.</h4>
+      <h5>Facilities at Our Hostel    </h5>
+      <ul>
+        <li>24/7 Electricity</li>
+        <li>24/7 Water Supply</li>
+        <li>Free Wi-Fi</li>
+        <li>Food Facility</li>
+        <li>Security</li>
+        <li>Parking Facility</li>
+      </ul>
+      <button onclick="location.href='/ng/slogin.html'">Login</button>
+    </div>
+    <br>
+
+
+    <div class="image-gallery">
+      <h3>Hostel Gallery</h3>
+      <div id="slider">
+    <img src="/ng/Hostel3.jpeg" class="slide" style="display:block;">
+    <img src="/ng/Hostel2.jpg" class="slide">
+    <img src="/ng/Hostel1.jpg" class="slide">
+     <img src="/ng/Hostel4.webp" class="slide">
+      <img src="/ng/image copy 2.png" class="slide">
+       <img src="/ng/image copy.png" class="slide">
+    <button id="prev">❮</button>
+    <button id="next">❯</button>
+  </div>
+    </div>
+  </main>
+<br><br>
+
+<button id="helpBtn" class="help-button">Help</button>
+
+
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>How to Apply for NiwasGrugh</h3>
+    <p>To apply for NiwasGrugh Hostel:</p>
+    <ol>
+      <li>Click on the "Apply Now" button on the home page.</li>
+      <li>Fill out the hostel application form completely.</li>
+      <li>Upload required documents (photo, ID proof, etc.).</li>
+      <li>Submit the form and wait for confirmation via email or contact.</li>
+    </ol>
+  </div>
+</div>
+<br><br><br>
+
+  <footer>
+    <div class="contact-info">
+      <strong>Contact Us</strong><br>
+      📞 +91 9574485195 &nbsp; | &nbsp;
+      ✉  meet.nakarani@outlook.com<br>
+      📍 Niwas Grugh Hostel, Near CHARUSAT University, Changa, Gujarat - 388421, India
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? "block" : "none";
+      });
+    }
+
+    document.getElementById("next").onclick = () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    };
+
+    document.getElementById("prev").onclick = () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    };
+  
+const modal = document.getElementById("helpModal");
+const btn = document.getElementById("helpBtn");
+const span = document.getElementsByClassName("close")[0];
+
+btn.onclick = () => {
+  modal.style.display = "block";
+};
+
+span.onclick = () => {
+  modal.style.display = "none";
+};
+
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+  </script>
+</body>
+</html>

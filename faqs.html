@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="me.png" type="image/png">
+  <title>FAQs - NivasGruh</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #004e92, #000428);
+      padding: 5px 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 3px solid #00c853;
+    }
+
+    .top-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .top-section img {
+     height: 45px;
+  width: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+    }
+
+    .top-section h1 {
+      margin: 0;
+      font-size: 22px;
+      color: white;
+      font-family: Georgia, serif;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      margin-top: 5px;
+  padding: 6px 12px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      background-color: rgba(255, 255, 255, 0.1);
+
+      border-radius: 8px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #00c853;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding: 160px 20px 30px;
+      max-width: 800px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0d1b2a;
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+
+    .accordion {
+      background-color: #ffffff;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #d0e3e8;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .accordion-header {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #e9f5f8;
+      color: #004e92;
+      position: relative;
+      text-align: left;
+    }
+
+    .accordion-header::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion.active .accordion-header::after {
+      content: '-';
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 15px 20px;
+      background-color: #fff;
+      color: #333;
+      border-top: 1px solid #d0e3e8;
+      text-align: left;
+    }
+
+    .accordion.active .accordion-body {
+      display: block;
+    }
+
+    @media screen and (max-width: 600px) {
+      .content-wrapper {
+        padding: 120px 15px 30px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .top-section h1 {
+        font-size: 28px;
+        text-align: center;
+      }
+
+      .top-section img {
+        height: 60px;
+        width: 60px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 10px 0;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        font-size: 18px;
+        color: #00e676;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .content-wrapper {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-section">
+      <img src="/ng/me.png" alt="LOGO">
+      <h1>NivasGruh</h1>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links" id="navLinks">
+     <a href="/ng/index.html">🏠 Home</a>
+      <a href="/ng/signup.html">👤Sign up</a>
+      <a href="/ng/faqs.html">💬 FAQs</a>
+      <a href="/ng/Contact.html">📬 Contact</a>
+    </nav>
+  </header>
+<br>
+  <div class="content-wrapper">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="accordion">
+      <div class="accordion-header">1. Who can apply for NiwasGrugh Hostel?</div>
+      <div class="accordion-body">Only students enrolled at CHARUSAT University or affiliated colleges are eligible to apply.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">2. How can I book a room?</div>
+      <div class="accordion-body">Go to the "Apply Now" page, fill in the required details, and submit the application. You'll be notified upon approval.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">3. Is the hostel for both boys and girls?</div>
+      <div class="accordion-body">temply, NiwasGrugh offers rooms only for male students. Girls' accommodation may be handled by the university separately.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">4. What documents are required during registration?</div>
+      <div class="accordion-body">You’ll need a College ID, Aadhar card, passport-size photo, and (if applicable) fee receipt.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">5. Can I choose the type of room?</div>
+      <div class="accordion-body">Yes, you can select AC or Non-AC rooms and your preferred floor during the application process.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">6. What facilities are available?</div>
+      <div class="accordion-body">24/7 electricity and water, Wi-Fi, food facility, security, and parking are all available.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">7. How many students share a room?</div>
+      <div class="accordion-body">Depending on the room type, each room is shared by 2 or 3 students.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">8. Can I change my room after allotment?</div>
+      <div class="accordion-body">Room changes are allowed in special cases with warden approval and subject to availability.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">9. How can I pay the hostel fees?</div>
+      <div class="accordion-body">You can pay online through the portal or directly at the hostel office.</div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">10. Who can I contact for help?</div>
+      <div class="accordion-body">You can contact us at +91 9574485195 or email meet.nakarni@outlookc.com . Visit the Contact page for more info.</div>
+    </div>
+  </div>
+ <script>
+   function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+   const acc = document.querySelectorAll('.accordion');
+    acc.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+    </script>
+
+</body>
+</html>

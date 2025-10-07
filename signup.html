@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="me.png" type="image/png">
+  <title>Student Sign Up - Hostel Booking - NivasGruh</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, #004e92, #000428);
+    padding: 5px 10px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 3px solid #00c853;
+    }
+
+    .top-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .top-section img {
+      height: 45px;
+  width: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffffff;
+      background-color: white;
+    }
+
+    .top-section h1 {
+      margin: 0;
+      font-size: 22px;
+      font-family: Georgia, serif;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-top: 10px;
+    }
+
+    .nav-links {
+      margin-top: 5px;
+  padding: 6px 12px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      background-color: rgba(255, 255, 255, 0.1);
+      
+      border-radius: 8px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #00c853;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links.show {
+      display: flex;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding: 160px 20px 30px;
+    }
+
+    .signup-box {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+      border: 2px solid #d0e3e8;
+      border-radius: 12px;
+      background-color: #ffffff;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #0d1b2a;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fafafa;
+      transition: border 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #0072ff;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      padding: 12px 25px;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    p a {
+      text-decoration: none;
+      color: #0072ff;
+      font-weight: bold;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 480px) {
+      .content-wrapper {
+        padding: 120px 15px 30px;
+      }
+      .signup-box {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .top-section h1 {
+        font-size: 26px;
+      }
+
+      .top-section img {
+        height: 60px;
+        width: 60px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        font-size: 18px;
+        color: #00e676;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="top-section">
+      <img src="/ng/me.png" alt="LOGO">
+      <h1>NivasGruh</h1>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links" id="navLinks">
+   <a href="/ng/index.html">🏠 Home</a>
+      <a href="/ng/signup.html">👤Sign up</a>
+      <a href="/ng/faqs.html">💬 FAQs</a>
+      <a href="/ng/Contact.html">📬 Contact</a>
+    </nav>
+  </header>
+<br>
+  <div class="content-wrapper">
+    <div class="signup-box">
+      <h2>Sign Up</h2>
+      <form method="post" action="singup.php" id="signupForm" novalidate>
+        <table cellpadding="5">
+          <tr>
+            <td><label for="fullname">Full Name</label></td>
+           
+            <td><input type="text" id="fullname" name="fullname" required></td>
+           
+         </tr>
+  
+          <tr>
+            <td><label for="email">Email</label></td>
+            <td><input type="email" id="email" name="email" required></td>
+          </tr>
+          <tr>
+            <td><label for="phone">Phone</label></td>
+            <td><input type="text" id="phone" name="phone" required></td>
+          </tr>
+          <tr>
+            <td><label for="password">Password</label></td>
+            <td><input type="password" id="password" name="password" required></td>
+          </tr>
+          <tr>
+            <td><label for="confirm_password">Confirm Password</label></td>
+            <td><input type="password" id="confirm_password" name="confirm_password" required></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="Sign Up">
+            </td>
+          </tr>
+        </table>
+        <p>Already have an account? <a href="/ng/slogin.html">Login here</a></p>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script>
+  
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+------------------------------
+First Name: Dhruv
+Middle Name: kishorbhai
+Last Name: Sutariya
+Email: ramdevji1576@gmail.com
+Phone: 8200023557
+Gender: Male
+DOB: 2025-08-04
+Address: C-239, Pramukhchhaya Chhya Socity. Yogichowk Surat
+Yogiarcad
+Branch: Computer Science
+Semester: 1st Semester
+Profile Photo: 1756181800_k.png
+Date: 2025-08-26 06:16:40
+------------------------------
+

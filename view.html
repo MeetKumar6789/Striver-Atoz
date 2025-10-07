@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="me.png" type="image/png">
+  <title>View Applications - Admin Panel - NivasGruh</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #0d1b2a;
+    }
+
+    header {
+      background: linear-gradient(to right, #004e92, #000428);
+      padding: 5px 10px;
+      color: white;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 3px solid #00c853; /* Green line */
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 120px auto 40px;
+      padding: 0 20px;
+    }
+
+    .application-box {
+      background: #ffffff;
+      border-left: 6px solid #004e92;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .application-box p {
+      margin: 8px 0;
+    }
+
+    .button-group {
+      margin-top: 15px;
+    }
+
+    .button-group input[type="submit"] {
+      background-color: #0072ff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .button-group input[type="submit"]:hover {
+      background-color: #005ecb;
+    }
+
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 40px auto 20px;
+      background-color: #004e92;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #002d63;
+    }
+
+    @media screen and (max-width: 600px) {
+      .application-box {
+        padding: 15px;
+      }
+
+      .button-group input[type="submit"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .back-btn {
+        width: 90%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Student Applications</h1>
+  </header>
+
+  <div class="container">
+    <div class="application-box">
+      <p><strong>Student Name:</strong> Dhruv Patel</p>
+      <p><strong>Block:</strong> Block A</p>
+      <p><strong>Room Type:</strong> AC</p>
+      <p><strong>Status:</strong> Pending</p>
+      <div class="button-group">
+        <form method="post" action="view.php" style="display:inline;">
+          <input type="hidden" name="student_id" value="1001">
+          <input type="submit" value="Approve">
+        </form>
+        <form method="post" action="view.php" style="display:inline;">
+          <input type="hidden" name="student_id" value="1001">
+          <input type="submit" value="Reject">
+        </form>
+      </div>
+    </div>
+
+    <div class="application-box">
+      <p><strong>Student Name:</strong> Priya Shah</p>
+      <p><strong>Block:</strong> Block B</p>
+      <p><strong>Room Type:</strong> Non-AC</p>
+      <p><strong>Status:</strong> Pending</p>
+      <div class="button-group">
+        <form method="post" action="view.php" style="display:inline;">
+          <input type="hidden" name="student_id" value="1002">
+          <input type="submit" value="Approve">
+        </form>
+        <form method="post" action="view.php" style="display:inline;">
+          <input type="hidden" name="student_id" value="1002">
+          <input type="submit" value="Reject">
+        </form>
+      </div>
+    </div>
+
+    <a class="back-btn" href="/ng/adashboard.html">Back to Dashboard</a>
+  </div>
+
+</body>
+</html>
